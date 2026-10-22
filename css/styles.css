@@ -1,0 +1,542 @@
+/* =========================================================
+   Практическая работа №1 — Курс ТРПО
+   Автор: Рабаданов Абдулманап Султанмутович
+   ========================================================= */
+
+/* ---------- Переменные ---------- */
+:root {
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #5b6474;
+  --color-border: #e2e6ee;
+  --color-primary: #315efb;
+  --color-primary-dark: #1e44c8;
+  --color-primary-soft: #e9efff;
+  --color-header: #111827;
+  --color-error: #c62828;
+  --color-success: #2e7d32;
+  --color-focus: #ffb703;
+
+  --radius: 14px;
+  --shadow: 0 12px 36px rgba(17, 24, 39, 0.06);
+  --container-width: 1100px;
+  --gap: 1.25rem;
+}
+
+/* ---------- Сброс и база ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem; /* чтобы заголовок раздела не прятался под липкой шапкой */
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 1.85rem); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1rem; }
+
+/* ---------- Ссылки и фокус ---------- */
+a {
+  color: var(--color-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-focus);
+  color: var(--color-header);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Контейнер ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Шапка (Flexbox) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-header);
+  color: #ffffff;
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.brand:hover { color: #ffffff; }
+
+.brand__logo {
+  border-radius: 6px;
+}
+
+.main-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav__link {
+  display: block;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.main-nav__link:hover,
+.main-nav__link:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* ---------- Разделы ---------- */
+.section {
+  margin: 2.5rem 0;
+}
+
+.section__title {
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-primary-soft);
+}
+
+.section__intro {
+  color: var(--color-muted);
+}
+
+/* ---------- Hero (Flexbox) ---------- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.hero__text {
+  flex: 1 1 24rem;
+}
+
+.hero__figure {
+  flex: 1 1 18rem;
+  margin: 0;
+}
+
+.hero__image {
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.hero__caption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.hero__lead {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ---------- Кнопки ---------- */
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.button:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #ffffff;
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.button--secondary:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+/* ---------- Карточки (Flexbox с переносом) ---------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 16rem;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.card__category {
+  align-self: flex-start;
+  margin-bottom: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card__text {
+  flex-grow: 1;
+  color: var(--color-muted);
+}
+
+.card__meta {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+.card__value {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ---------- Таблица ---------- */
+.table-wrap {
+  overflow-x: auto; /* таблица прокручивается внутри блока, а не всей страницей */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedule-table__caption {
+  padding: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.schedule-table thead th {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background: #fafbfd;
+}
+
+.schedule-table tbody tr:hover {
+  background: #f0f4ff;
+}
+
+.schedule-table tfoot th,
+.schedule-table tfoot td {
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.schedule-table tfoot th {
+  text-align: right;
+}
+
+.schedule-table__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.schedule-table th.schedule-table__num,
+.schedule-table td.schedule-table__num {
+  text-align: right;
+}
+
+/* ---------- Форма ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.form__row .form__field {
+  flex: 1 1 14rem;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.form__label {
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.form__required {
+  color: var(--color-error);
+}
+
+.form__control {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #c9cfdb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: inherit;
+  font: inherit;
+}
+
+.form__control--textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.form__control:focus {
+  border-color: var(--color-primary);
+}
+
+/* Состояния ошибочного и корректного ввода.
+   :user-invalid срабатывает только после взаимодействия с полем,
+   поэтому пустая форма при загрузке не подсвечивается красным. */
+.form__control:user-invalid {
+  border-color: var(--color-error);
+  background: #fff5f5;
+}
+
+.form__control:user-valid {
+  border-color: var(--color-success);
+}
+
+.form__hint {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.form__control:user-invalid + .form__hint {
+  color: var(--color-error);
+}
+
+.form__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.form__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.form__option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--color-primary);
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------- Подвал ---------- */
+.site-footer {
+  margin-top: 3rem;
+  background: var(--color-header);
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.site-footer p { margin: 0; }
+
+.site-footer__author {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ---------- Адаптивность ---------- */
+@media (max-width: 768px) {
+  html { scroll-padding-top: 8rem; }
+
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero,
+  .form {
+    padding: 1.1rem;
+  }
+
+  .main-nav__link {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .form__actions .button {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+  }
+}
