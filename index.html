@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Практическая работа 1 — HTML и CSS</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="site-header">
+    <a class="brand" href="#about">
+      <img src="images/logo.svg" alt="Логотип курса" width="36" height="36">
+      <span>Практическая работа 1</span>
+    </a>
+    <span class="header-tag">ТРПО</span>
+  </header>
+
+  <div class="wrap">
+
+    <!-- О курсе -->
+    <section id="about" class="hero">
+      <span class="pill">пример по аналогии</span>
+      <h1>HTML и базовая CSS-разметка. Семантическая структура страницы</h1>
+      <p class="muted">
+        Визуальный ориентир результата. Основные данные берутся из dataset:
+        <code>data/content.csv</code> и <code>data/navigation.json</code>.
+      </p>
+      <img class="hero-cover" src="images/cover.svg" alt="Обложка курса">
+    </section>
+
+    <!-- Навигация по разделам -->
+    <nav aria-label="Основная навигация" class="section-nav">
+      <ul>
+        <li><a href="#about">О курсе</a></li>
+        <li><a href="#tracks">Направления</a></li>
+        <li><a href="#schedule">Расписание</a></li>
+        <li><a href="#signup">Регистрация</a></li>
+      </ul>
+    </nav>
+
+    <!-- Направления: 6 карточек из content.csv -->
+    <section id="tracks">
+      <h2>Направления</h2>
+      <div class="grid">
+
+        <article class="card">
+          <span class="card-meta">Основа</span>
+          <h3>HTML</h3>
+          <p class="muted">Структура и семантика документа</p>
+          <p class="card-value">Оценка: <b>8</b></p>
+        </article>
+
+        <article class="card">
+          <span class="card-meta">Оформление</span>
+          <h3>CSS</h3>
+          <p class="muted">Стили и адаптивность</p>
+          <p class="card-value">Оценка: <b>9</b></p>
+        </article>
+
+        <article class="card">
+          <span class="card-meta">Инструменты</span>
+          <h3>Git</h3>
+          <p class="muted">История изменений</p>
+          <p class="card-value">Оценка: <b>7</b></p>
+        </article>
+
+        <article class="card">
+          <span class="card-meta">HTML</span>
+          <h3>Forms</h3>
+          <p class="muted">Пользовательский ввод</p>
+          <p class="card-value">Оценка: <b>6</b></p>
+        </article>
+
+        <article class="card">
+          <span class="card-meta">Качество</span>
+          <h3>Accessibility</h3>
+          <p class="muted">Доступность интерфейса</p>
+          <p class="card-value">Оценка: <b>10</b></p>
+        </article>
+
+        <article class="card">
+          <span class="card-meta">Проверка</span>
+          <h3>DevTools</h3>
+          <p class="muted">Исследование DOM и стилей</p>
+          <p class="card-value">Оценка: <b>8</b></p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Расписание: таблица -->
+    <section id="schedule">
+      <h2>Расписание</h2>
+      <table class="schedule">
+        <thead>
+          <tr>
+            <th scope="col">Тема</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Оценка</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>HTML</td><td>Основа</td><td>Структура и семантика документа</td><td>8</td></tr>
+          <tr><td>CSS</td><td>Оформление</td><td>Стили и адаптивность</td><td>9</td></tr>
+          <tr><td>Git</td><td>Инструменты</td><td>История изменений</td><td>7</td></tr>
+          <tr><td>Forms</td><td>HTML</td><td>Пользовательский ввод</td><td>6</td></tr>
+          <tr><td>Accessibility</td><td>Качество</td><td>Доступность интерфейса</td><td>10</td></tr>
+          <tr><td>DevTools</td><td>Проверка</td><td>Исследование DOM и стилей</td><td>8</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Регистрация: форма -->
+    <section id="signup">
+      <h2>Регистрация</h2>
+      <form class="signup-form" action="#" method="post" novalidate>
+        <div class="form-row">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" required minlength="2" maxlength="40">
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="track">Направление</label>
+          <select id="track" name="track" required>
+            <option value="">— выберите —</option>
+            <option value="1">HTML</option>
+            <option value="2">CSS</option>
+            <option value="3">Git</option>
+            <option value="4">Forms</option>
+            <option value="5">Accessibility</option>
+            <option value="6">DevTools</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="age">Возраст</label>
+          <input id="age" name="age" type="number" min="16" max="99" required>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" rows="4" required minlength="10" maxlength="500"></textarea>
+        </div>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2026 Практическая работа 1 — ТРПО</p>
+  </footer>
+
+</body>
+</html>
